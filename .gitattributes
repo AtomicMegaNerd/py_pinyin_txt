@@ -1,0 +1,11 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+*.py text
+*.md text
+*.json text
+Pipfile text
+Pipfile.lock text
+VERSION text
+.pylintrc text
+
