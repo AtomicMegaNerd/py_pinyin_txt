@@ -33,10 +33,13 @@ pip install --user git+https://github.com/AtomicMegaNerd/py_pinyin_txt.git#egg=p
 
 ### Update PATH
 
-You may need to add Python directories to your path to make it work:
+You may need to add Python directories to your path to make it work (replace USERNAME
+with the correct name for your home directory on the Windows example):
 
-* On Windows add *\AppData\Roaming\Python\Python38\Scripts* to your PATH.
+* On Windows add *C:\Users\USERNAME\AppData\Roaming\Python\Python38\Scripts* to your PATH.
 * On Mac/Linux you may need to add *$HOME/.local/bin* to your PATH.
+
+Check the [pip documentation](https://pip.pypa.io/en/stable/) for more information.
 
 ## Usage
 
@@ -60,7 +63,7 @@ py-pinyin-txt ~/Desktop/Input.md ~/Desktop/Output.md
 
 ## Development
 
-To develop the project you need to use [pipenv](https://github.com/pypa/pipenv).
+To develop the project you need to use [Pipenv](https://github.com/pypa/pipenv).
 
 ```bash
 pip install --user pipenv
