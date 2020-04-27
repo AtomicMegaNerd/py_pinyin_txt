@@ -12,8 +12,8 @@ Ignore the neutral tone. Use v for ü.
 ## Source Pinyin Examples
 
 * 你好(nǐhǎo) you would write: ni3hao3.
-* 现在让我们都考虑一下(Xiànzài ràng wǒmen dōu kàolǜ yíxià) write: Xian4zai4 rang4 wo3men.
-dou1 kao4lv4 yi2xia4 ba (not the v used for ü).
+* 现在让我们都考虑一下(Xiànzài ràng wǒmen dōu kǎolǜ yíxià) write: Xian4zai4 rang4 wo3men
+dou1 kao3lv4 yi2xia4 (not the v used for ü).
 
 ## Pre-Requisites
 
