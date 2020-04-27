@@ -16,6 +16,32 @@ RES_1: List[str] = ["Nǐ hǎo, wǒ xìng Dīng."]
 SRC_2: List[str] = ["Wo3 he2 2 bei1 shui3."]
 RES_2: List[str] = ["Wǒ hé 2 bēi shuǐ."]
 
+SRC_3: List[str] = [
+    "Wo3 xiang3 pei3yang2 qian1bei1 de tai4du.",
+    "Wo3 ye3 xiang3 bi4kai1 gao1'ao4 de tai4du!",
+]
+RES_3: List[str] = [
+    "Wǒ xiǎng pěiyáng qiānbēi de tàidu.",
+    "Wǒ yě xiǎng bìkāi gāo'ào de tàidu!",
+]
+
+SRC_4: List[str] = [
+    "# Zi1liao4",
+    "",
+    "Wo3 xiang3 *pei3yang* qian1bei1 de tai4du.",
+    "",
+    "Wo3 ye3 xiang3 bi4kai1 gao1'ao4 de tai4du!",
+    "",
+]
+RES_4: List[str] = [
+    "# Zīliào",
+    "",
+    "Wǒ xiǎng *pěiyang* qiānbēi de tàidu.",
+    "",
+    "Wǒ yě xiǎng bìkāi gāo'ào de tàidu!",
+    "",
+]
+
 
 class TestPinyinConverted(unittest.TestCase):
     def setUp(self):
@@ -28,3 +54,11 @@ class TestPinyinConverted(unittest.TestCase):
     def test_standalone_numbers_ignored(self):
         res = self.test_object.do_convert(SRC_1)
         self.assertEqual(RES_1, res)
+
+    def test_multilines_converts_properly(self):
+        res = self.test_object.do_convert(SRC_3)
+        self.assertEqual(RES_3, res)
+
+    def test_blank_lines_and_markdown_should_be_preserved(self):
+        res = self.test_object.do_convert(SRC_4)
+        self.assertEqual(RES_4, res)
