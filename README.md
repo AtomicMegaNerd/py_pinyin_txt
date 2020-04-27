@@ -8,6 +8,9 @@ hao3) and it will convert it to use the proper Pinyin tone marks (Nǐ Hǎo).
 You must have Python 3.8 installed along with pip in order to use this program. You
 can get Python 3.8 from [Python.org](https://python.org).
 
+Please note that this program supports and uses the UTF-8 encoding for the plain text
+files.
+
 ## Installation
 
 You can install this program using pip directly from GitHub.

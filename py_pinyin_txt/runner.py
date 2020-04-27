@@ -33,7 +33,7 @@ class PyPinyinTxtRunner:
         Read the lines in a plain text file and put each line in a list.
         """
         self.logger.info(f"Reading source pinyin from file {self.infile}")
-        with open(self.infile, "r") as infile_fd:
+        with open(self.infile, "r", encoding="utf-8") as infile_fd:
             for line in infile_fd:
                 self.text.append(line)
 
@@ -42,5 +42,5 @@ class PyPinyinTxtRunner:
         Write each converted line of text to the output file
         """
         self.logger.info(f"Writing converted pinyin to file {self.outfile}")
-        with open(self.outfile, "w") as outfile_fd:
+        with open(self.outfile, "w", encoding="utf-8") as outfile_fd:
             outfile_fd.writelines(self.converted)
