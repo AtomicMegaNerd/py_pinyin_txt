@@ -42,6 +42,9 @@ RES_4: List[str] = [
     "",
 ]
 
+SRC_5: List[str] = ["Xian4zai4 rang4 wo3men dou1 kao4lv4 yi2xia4 ba"]
+RES_5: List[str] = ["Xiànzài ràng wǒmen dōu kàolǜ yíxià ba"]
+
 
 class TestPinyinConverted(unittest.TestCase):
     def setUp(self):
@@ -62,3 +65,7 @@ class TestPinyinConverted(unittest.TestCase):
     def test_blank_lines_and_markdown_should_be_preserved(self):
         res = self.test_object.do_convert(SRC_4)
         self.assertEqual(RES_4, res)
+
+    def test_v_replaced_by_umlaut_u(self):
+        res = self.test_object.do_convert(SRC_5)
+        self.assertEqual(RES_5, res)
