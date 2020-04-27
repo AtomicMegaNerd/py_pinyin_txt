@@ -9,7 +9,6 @@ black="==19.10b0"
 pylint="==2.4.4"
 
 [packages]
-Markdown="==3.2.1"
 
 [requires]
 python_version = "3.8"
