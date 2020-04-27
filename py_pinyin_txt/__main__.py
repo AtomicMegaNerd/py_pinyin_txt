@@ -13,14 +13,16 @@ from py_pinyin_txt.pinyin import PinyinConverter
 from py_pinyin_txt.logging import configure_logger
 from py_pinyin_txt.utils import getVersion
 
-if __name__ == "__main__":
+
+def main(args=None) -> None:
+    """
+    This is the main subroutine.
+    """
 
     parser = argparse.ArgumentParser(prog="PyPinyinTxt")
 
     parser.add_argument(
-        "infile",
-        type=str,
-        help="This is the input file that contains the source text",
+        "infile", type=str, help="This is the input file that contains the source text",
     )
     parser.add_argument(
         "outfile",
@@ -54,3 +56,7 @@ if __name__ == "__main__":
     except Exception as err:
         logger.error(f"Something went wrong: {err}")
         sys.exit(-1)
+
+
+if __name__ == "__main__":
+    main()
