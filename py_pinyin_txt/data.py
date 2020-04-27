@@ -2,8 +2,16 @@
 This module contains the dicts for replacing our Pinyin numerical
 mark-up with the actual unicode characters for each pinyin letter.
 
-There are 3 classes of replacement, 1, 2, or 3 which correspond to
-a vowel length of 1, 2, or 3.
+There are 4 classes of replacement, 1, 2, 3, 4 which correspond to
+a length of 1-4 letters.  Pinyin does not change so hard-coding these dicts
+is fine.  We don't need to put these in JSON files for that reason.
+
+When searching these dicts for matches it is super important you go in order from
+bigger dict to smaller dict.  Otherwise you'll match on subsets of the longer sequences
+and never convert the longer ones correctly.
+
+In the 4 dicts the key is what we look for in the source and the value is the
+replacement that goes into the output.
 """
 
 from typing import Dict
