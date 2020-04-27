@@ -9,7 +9,7 @@ import argparse
 import sys
 from logging import Logger
 
-from py_pinyin_txt.pinyin import PinyinConverter
+from py_pinyin_txt.runner import PyPinyinTxtRunner
 from py_pinyin_txt.logging import configure_logger
 from py_pinyin_txt.utils import getVersion
 
@@ -50,7 +50,7 @@ def main(args=None) -> None:
         logger = configure_logger()
 
     try:
-        converter = PinyinConverter(logger, args.infile, args.outfile)
+        converter = PyPinyinTxtRunner(logger, args.infile, args.outfile)
         converter.convert_pinyin_text()
         logger.info("Program completed conversion without errors.")
     except Exception as err:

@@ -11,28 +11,14 @@ from py_pinyin_txt.data import TONES
 
 class PinyinConverter:
     """
-    This class handles the core of the program.  It loads the source text file
-    from disk, runs the conversion to add the pinyin tone marks, and then outputs
-    the text file to the specified path.
+    This class handles the actual conversion and is written in such a way that it
+    is very easy to test.
     """
 
-    def __init__(self, logger: Logger, infile: str, outfile: str) -> None:
+    def __init__(self, logger: Logger) -> None:
         self.logger: Logger = logger
-        self.infile: str = infile
-        self.outfile: str = outfile
-        self.text: List[str] = []
-        self.converted: List[str] = []
 
-    def convert_pinyin_text(self):
-        """
-        This method loads the data from the source file, runs the all-important
-        _do_convert method and outputs the converted text to the destination file.
-        """
-        self._read_input()
-        self._do_convert()
-        self._write_output()
-
-    def _do_convert(self):
+    def do_convert(self, text: List[str]) -> List[str]:
         """
         This method is the meat of the program.
 
@@ -50,8 +36,8 @@ class PinyinConverter:
         Append modified lines to a new list called converted which the caller can use
         to output pinyin tone marks.
         """
-
-        for line in self.text:
+        converted: List[str] = []
+        for line in text:
             # This string contains valid Pinyin initials and finals which
             # contain at least a vowel and a number...
             search_str: str = ""
@@ -79,21 +65,6 @@ class PinyinConverter:
                 else:
                     search_str = ""
             self.logger.debug(f"Converted line: {line}")
-            self.converted.append(line)
+            converted.append(line)
 
-    def _read_input(self) -> None:
-        """
-        Read the lines in a plain text file and put each line in a list.
-        """
-        self.logger.info(f"Reading source pinyin from file {self.infile}")
-        with open(self.infile, "r") as infile_fd:
-            for line in infile_fd:
-                self.text.append(line)
-
-    def _write_output(self) -> None:
-        """
-        Write each converted line of text to the output file
-        """
-        self.logger.info(f"Writing converted pinyin to file {self.outfile}")
-        with open(self.outfile, "w") as outfile_fd:
-            outfile_fd.writelines(self.converted)
+        return converted
