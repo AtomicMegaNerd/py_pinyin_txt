@@ -25,7 +25,6 @@ After installation you should be able to execute the program with the following 
 * INPUT_FILE - This is the path to the text file you wish to process.
 * OUTPUT_FILE - This is the new file the program will create with the Pinyin tone 
 marks.
-* --version - *Optional* This will print the version of the program and exit.
 
 ```bash
 py-pinyin-txt INPUT_FILE OUTPUT_FILE

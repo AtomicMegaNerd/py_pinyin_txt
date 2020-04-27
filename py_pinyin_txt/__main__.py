@@ -30,12 +30,6 @@ def main(args=None) -> None:
         help="THis is the output file that will contain our converted Pinyin",
     )
     parser.add_argument(
-        "--version",
-        action="version",
-        version=f"%(prog)s {getVersion()}",
-        help="This flag prints the program version and exits",
-    )
-    parser.add_argument(
         "--debug",
         action="store_true",
         help="This flag enables debug logging to aid development",
