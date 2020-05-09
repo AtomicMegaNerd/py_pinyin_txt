@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
-from py_pinyin_txt.utils import getVersion
+from py_pinyin_txt.utils import get_version
 
 setup(
     name="py_pinyin_txt",
-    version=getVersion(),
+    version=get_version(),
     packages=find_packages(),
     include_package_data=True,
     author="Chris Dunphy",

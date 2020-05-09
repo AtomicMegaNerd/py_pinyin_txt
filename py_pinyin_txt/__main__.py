@@ -11,7 +11,6 @@ from logging import Logger
 
 from py_pinyin_txt.runner import PyPinyinTxtRunner
 from py_pinyin_txt.logging import configure_logger
-from py_pinyin_txt.utils import getVersion
 
 
 def main(args=None) -> None:
