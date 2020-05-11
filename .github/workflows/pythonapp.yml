@@ -32,6 +32,7 @@ jobs:
       
   push_to_registry:
     name: Push Docker image to GitHub Packages
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -42,5 +43,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: AtomicMegaNerd/pypinyintxt/py-pinyin-txt
+          repository: atomicmeganerd/py-pinyin-txt/py-pinyin-txt
           tag_with_ref: true
