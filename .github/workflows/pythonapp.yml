@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+name: py_pinyin_txt CI/CD
 
 on:
   push:
@@ -10,8 +10,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  test:
+    name: Run all linters and tests
     runs-on: ubuntu-latest
 
     steps:
@@ -29,4 +29,18 @@ jobs:
     - run: pipenv run pylint py_pinyin_txt
     - run: pipenv run mypy py_pinyin_txt
     - run: pipenv run python -m unittest discover
-    - run: pip install .
+      
+  push_to_registry:
+    name: Push Docker image to GitHub Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: AtomicMegaNerd/py_pinyin_txt/py_pinyin_txt
+          tag_with_ref: true
