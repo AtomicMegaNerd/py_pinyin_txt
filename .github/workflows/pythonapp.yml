@@ -21,19 +21,18 @@ jobs:
       with:
         python-version: 3.8
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pipenv
-        if [ -f Pipfile ]; then pipenv install --dev; fi
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: install --dev
     - name: Lint with pylint
-      run: |
-        pipenv shell
-        pylint .
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: pylint .
     - name: Lint with mypy
-      run: |
-        pipenv shell
-        mypy .
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: mypy .
     - name: Test with pytest
-      run: |
-        pipenv shell
-        python -m unittest discover
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: pythom -m unittest discover
