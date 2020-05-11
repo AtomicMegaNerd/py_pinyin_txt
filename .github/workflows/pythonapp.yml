@@ -43,5 +43,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: atomicmeganerd/py-pinyin-txt/py-pinyin-txt
+          repository: atomicmeganerd/py_pinyin_txt/py-pinyin-txt
           tag_with_ref: true
