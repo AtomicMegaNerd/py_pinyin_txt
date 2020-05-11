@@ -26,6 +26,6 @@ jobs:
         pip install pipenv
         pipenv install --dev
     - run: pipenv run black .
-    - run: pipenv run pylint .
-    - run: pipenv run mypy .
+    - run: pipenv run pylint py_pinyin_txt
+    - run: pipenv run mypy
     - run: pipenv run python -m unittest discover
