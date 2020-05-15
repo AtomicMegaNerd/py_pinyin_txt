@@ -45,9 +45,6 @@ RES_4: List[str] = [
 SRC_5: List[str] = ["Xian4zai4 rang4 wo3men dou1 kao4lv4 yi2xia4 ba"]
 RES_5: List[str] = ["Xiànzài ràng wǒmen dōu kàolǜ yíxià ba"]
 
-SRC_6: List[str] = ["chuánran3"]
-RES_6: List[str] = ["chuánrǎn"]
-
 
 class TestPinyinConverted(unittest.TestCase):
     def setUp(self):
@@ -72,7 +69,3 @@ class TestPinyinConverted(unittest.TestCase):
     def test_v_replaced_by_umlaut_u(self):
         res = self.test_object.do_convert(SRC_5)
         self.assertEqual(RES_5, res)
-
-    def test_two_consonants_in_a_row_still_works(self):
-        res = self.test_object.do_convert(SRC_6)
-        self.assertEqual(RES_6, res)

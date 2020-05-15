@@ -61,6 +61,15 @@ py-pinyin-txt INPUT_FILE OUTPUT_FILE
 py-pinyin-txt ~/Desktop/Input.md ~/Desktop/Output.md
 ```
 
+### Limitations
+
+If you have a two or more character word without spaces, and earlier components
+of that word are already in Pinyin tone-marks, this program will be unable to
+convert later components.  So for example chuánran3 will not convert to
+chuánrǎn.  To fix this convert all components back to numbers first.
+
+So, change chuánran3 to chuan2ran3.  Then the program will work as expected.
+
 ## Development
 
 To develop the project you need to use [Pipenv](https://github.com/pypa/pipenv).
