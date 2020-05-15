@@ -1,5 +1,7 @@
 # PyPinyinTxt
 
+![py_pinyin_txt CI/CD](https://github.com/AtomicMegaNerd/py_pinyin_txt/workflows/py_pinyin_txt%20CI/CD/badge.svg)
+
 ## Introcution
 
 This Python program will take a source text file with numerical Pinyin markup (Ni3
