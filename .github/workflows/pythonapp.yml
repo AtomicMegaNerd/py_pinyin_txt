@@ -5,9 +5,9 @@ name: py_pinyin_txt CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   test:
@@ -15,21 +15,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pipenv
-        pipenv install --dev
-    - run: pipenv run black .
-    - run: pipenv run pylint py_pinyin_txt
-    - run: pipenv run mypy py_pinyin_txt
-    - run: pipenv run python -m unittest discover
-      
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --dev
+      - run: pipenv run black .
+      - run: pipenv run pylint py_pinyin_txt
+      - run: pipenv run mypy py_pinyin_txt
+      - run: pipenv run python -m unittest discover
+
   push_to_registry:
     name: Push Docker image to GitHub Packages
     needs: test
