@@ -21,7 +21,9 @@ def main(args=None) -> None:
     parser = argparse.ArgumentParser(prog="PyPinyinTxt")
 
     parser.add_argument(
-        "infile", type=str, help="This is the input file that contains the source text",
+        "infile",
+        type=str,
+        help="This is the input file that contains the source text",
     )
     parser.add_argument(
         "outfile",

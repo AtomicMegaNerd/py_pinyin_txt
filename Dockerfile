@@ -1,9 +1,8 @@
-FROM python:3.9.5-slim
+FROM python:3.9.5-alpine3.13
 
 WORKDIR /app
 COPY . /app
 RUN pip install .
-RUN py-pinyin-txt --help
 WORKDIR /
 RUN rm -rf /app
 
