@@ -1,4 +1,4 @@
-FROM python:3.9.5-slim
+FROM python:3.9.5-alpine3.13
 
 ENV GID 1001
 ENV UID 1001
@@ -6,6 +6,7 @@ ENV USER dockeruser
 ENV PATH=/home/${USER}/.local/bin:${PATH}
 
 # We are going to run as a non-root user
+RUN apk add --no-cache shadow
 RUN groupadd -g ${GID} ${USER} && useradd -g ${GID} -u ${UID} -m ${USER}
 
 WORKDIR /app
