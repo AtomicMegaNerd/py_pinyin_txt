@@ -1,10 +1,26 @@
 FROM python:3.9.5-slim
 
+ENV GID 1001
+ENV UID 1001
+ENV USER dockeruser
+ENV PATH=/home/${USER}/.local/bin:${PATH}
+
+# We are going to run as a non-root user
+RUN groupadd -g ${GID} ${USER} && useradd -g ${GID} -u ${UID} -m ${USER}
+
 WORKDIR /app
 COPY . /app
-RUN pip install .
-RUN py-pinyin-txt --help
-WORKDIR /
+RUN chown -R ${USER}:${USER} /app
+
+# We want to install the pip package as the non-root user
+USER ${USER}
+RUN pip install --user --use-feature=in-tree-build .
+WORKDIR /home/${USER}
+
+# Only root can delete the /app directory itself
+USER root
 RUN rm -rf /app
 
+# Switch back to the non-root user to run our program
+USER ${USER}
 ENTRYPOINT ["py-pinyin-txt"]
