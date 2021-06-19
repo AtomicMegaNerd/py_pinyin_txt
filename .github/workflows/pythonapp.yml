@@ -1,14 +1,10 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
 name: py_pinyin_txt CI/CD
-
 on:
   push:
     branches:
       - "**"
   pull_request:
-    branches: [master]
+    types: [closed] 
 
 jobs:
   test:
@@ -34,10 +30,13 @@ jobs:
   push_to_registry:
     name: Push Docker image to GitHub Packages
     needs: test
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Get the app version
+        run: echo "APP_VERSION=$(cat VERSION)" >> $GITHUB_ENV
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
@@ -45,4 +44,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           repository: atomicmeganerd/py_pinyin_txt/py-pinyin-txt
-          tag_with_ref: true
+          tags: ${{ env.APP_VERSION }},latest 
