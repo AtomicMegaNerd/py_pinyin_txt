@@ -4,7 +4,7 @@ on:
     branches:
       - "master"
 env:
-  IMAGE_NAME: atomicmeganerd/py_pinyin_txt
+  IMAGE_NAME: py_pinyin_txt
 jobs:
   run_tests_and_linters:
     name: Run all linters and tests
@@ -44,4 +44,4 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }},${{ env.IMAGE_NAME}}:latest 
+          tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }}
