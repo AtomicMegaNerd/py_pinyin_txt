@@ -63,6 +63,12 @@ py-pinyin-txt INPUT_FILE OUTPUT_FILE
 py-pinyin-txt ~/Desktop/Input.md ~/Desktop/Output.md
 ```
 
+### Docker Example
+
+```bash
+docker run -v "$PWD:/data" -t py_pinyin_txt:latest /data/input.md /data/output.md
+```
+
 ### Limitations
 
 If you have a two or more character word without spaces, and earlier components
