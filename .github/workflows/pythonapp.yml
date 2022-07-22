@@ -43,7 +43,9 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ghcr.io/${{ github.repository }}
-          tags: ${{ env.APP_VERSION }},latest
+          tags: |
+            type=raw,value=${{ env.APP_VERSION }}
+            type=raw,value=latest
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v3
         with:
