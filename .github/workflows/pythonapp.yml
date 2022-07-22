@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - "master"
+env:
+  IMAGE_NAME: atomicmeganerd/py-pinyin-txt
 jobs:
   run_tests_and_linters:
     name: Run all linters and tests
@@ -38,13 +40,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract metadata for Docker
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: atomicmeganerd/py-pinyin-txt
       - name: Push to GitHub Packages
-        uses: docker/build-push-action@v3
-        with: 
-          tags: ${{ env.APP_VERSION }},latest 
-          labels: ${{ steps.meta.outputs.labels }}
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ${{ env.IMAGE_NAME }}/${{ env.APP_VERSION }},${{ env.IMAGE_NAME}}/latest 
