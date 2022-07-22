@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - "master"
-env:
-  IMAGE_NAME: py_pinyin_txt
 jobs:
   run_tests_and_linters:
     name: Run all linters and tests
@@ -40,8 +38,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: ${{ env.APP_VERSION}}, latest
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }}
+          tags: ${{ steps.meta.outputs.tags }}
