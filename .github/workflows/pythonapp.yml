@@ -25,7 +25,7 @@ jobs:
 
   push_to_registry:
     name: Push Docker image to GitHub Packages
-    needs: test
+    needs: run_tests_and_linters
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
