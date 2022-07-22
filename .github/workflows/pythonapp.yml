@@ -38,8 +38,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: atomicmeganerd/py-pinyin-txt
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v3
         with: 
-          repository: atomicmeganerd/py_pinyin_txt
           tags: ${{ env.APP_VERSION }},latest 
+          labels: ${{ steps.meta.outputs.labels }}
