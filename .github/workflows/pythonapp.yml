@@ -4,7 +4,7 @@ on:
     branches:
       - "master"
 env:
-  IMAGE_NAME: atomicmeganerd/py-pinyin-txt
+  IMAGE_NAME: atomicmeganerd/py_pinyin_txt
 jobs:
   run_tests_and_linters:
     name: Run all linters and tests
