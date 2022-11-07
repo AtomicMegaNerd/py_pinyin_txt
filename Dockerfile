@@ -1,4 +1,4 @@
-FROM python:3.9.5-alpine3.13
+FROM python:3.11.0-alpine3.16
 
 ENV GID 1001
 ENV UID 1001
@@ -15,7 +15,7 @@ RUN chown -R ${USER}:${USER} /app
 
 # We want to install the pip package as the non-root user
 USER ${USER}
-RUN pip install --user --use-feature=in-tree-build .
+RUN pip install --user .
 WORKDIR /home/${USER}
 
 # Only root can delete the /app directory itself
