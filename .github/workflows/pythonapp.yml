@@ -2,21 +2,25 @@ name: py_pinyin_txt CI/CD
 on:
   push:
     branches:
-      - "**"
-  pull_request:
-    types: [closed] 
-
+      - "master"
 jobs:
-  test:
+  run_tests_and_linters:
     name: Run all linters and tests
     runs-on: ubuntu-latest
-
     steps:
+<<<<<<< HEAD
       - uses: actions/checkout@v2
       - name: Set up Python 3.11
         uses: actions/setup-python@v1
         with:
           python-version: 3.11
+=======
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+>>>>>>> 4554145a9d0e5e68fa0e2495f22acdf18d9ff253
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -29,19 +33,29 @@ jobs:
 
   push_to_registry:
     name: Push Docker image to GitHub Packages
-    needs: test
-    if: github.event.pull_request.merged == true
+    needs: run_tests_and_linters
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Get the app version
         run: echo "APP_VERSION=$(cat VERSION)" >> $GITHUB_ENV
-      - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
-        with:
+      - name: Login to the container registry
+        uses: docker/login-action@v2
+        with: 
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
-          repository: atomicmeganerd/py_pinyin_txt/py-pinyin-txt
-          tags: ${{ env.APP_VERSION }},latest 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=${{ env.APP_VERSION }}
+            type=raw,value=latest
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}

@@ -4,13 +4,23 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+<<<<<<< HEAD
 mypy="==0.990"
 black="==22.10.0"
 pylint="==2.15.5"
 rope="==1.4.0"
+=======
+mypy="==0.971"
+black="==22.6.0"
+pylint="==2.14.5"
+>>>>>>> 4554145a9d0e5e68fa0e2495f22acdf18d9ff253
 pynvim="0.4.3"
 
 [packages]
 
 [requires]
+<<<<<<< HEAD
 python_version = "3.11"
+=======
+python_version = "3.10"
+>>>>>>> 4554145a9d0e5e68fa0e2495f22acdf18d9ff253
